@@ -11,6 +11,9 @@ app.use(express.json())
 app.listen(PORT, () => console.log('Listening on port ' + PORT))
 
 
-
-const htmlRoutes = require('./app/routing/htmlRoutes')
+// routes
+const htmlRoutes = require('./app/routing/htmlRoutes.js')
 app.use('/', htmlRoutes)
+
+const apiRoutes = require('./app/routing/apiRoutes.js')
+app.use('/', apiRoutes)
