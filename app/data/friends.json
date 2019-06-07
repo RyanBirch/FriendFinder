@@ -1,22 +1,22 @@
 [
   {
-    "name": "Ahmed",
-    "photo": "none",
+    "name": "bob ross",
+    "photo": "no",
     "scores": [
-      5,
       1,
-      4,
-      4,
-      5,
       1,
-      2,
-      5,
-      4,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
       1
     ]
   },
   {
-    "name": "bob ross",
+    "name": "jackie moon",
     "photo": "no",
     "scores": [
       1,
