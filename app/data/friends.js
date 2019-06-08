@@ -16,33 +16,31 @@ fs.readFile('app/data/friends.json', 'utf8', (err, data) => {
 // match user with friend
 function findFriend(user) {
     return new Promise((resolve, reject) => {
-        // get score of current user
-        let userSum = 0
-        user.scores.forEach(item => {
-            userSum += item
-        })
-
+    
         let currentFriend
 
         // grab other users from json file
         fs.readFile('app/data/friends.json', 'utf8', (err, data) => {
             if (err) throw err
 
-            let friendSum = 0
-            let diff = 100
+            // initial value to check against
+            let diffSum = 100
+            let currentSum = 0
 
-            // loop through other users and find their scores
+            // loop through other users and compare their scores to current user
             let parse = JSON.parse(data)
             for (let i = 0; i < parse.length; i++) {
-                parse[i].scores.forEach(item => {
-                    friendSum += item
-                })
 
-                // compare user score to other users to find best match
-                if (Math.abs(friendSum - userSum) < diff) {
-                    currentFriend = parse[i]
-                    diff = Math.abs(friendSum - userSum)
+                for (let j = 0; j < parse[i].scores.length; j++) {
+                    currentSum += Math.abs(parse[i].scores[j] - user.scores[j])
                 }
+
+                if (currentSum < diffSum) {
+                    diffSum = currentSum 
+                    currentFriend = parse[i]
+                }
+
+                currentSum = 0
             }
 
             resolve(currentFriend)
