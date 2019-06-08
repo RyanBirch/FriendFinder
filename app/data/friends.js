@@ -42,36 +42,14 @@ function findFriend(user) {
                 if (Math.abs(friendSum - userSum) < diff) {
                     currentFriend = parse[i]
                     diff = Math.abs(friendSum - userSum)
-                    console.log('current friend in loop: ' + currentFriend.name)
                 }
             }
 
-            console.log('current friend outside loop: ' + currentFriend.name)
             resolve(currentFriend)
         })
     })
 }
 
-
-let person = {
-    "name": "bob ross",
-    "photo": "no",
-    "scores": [
-      1,
-      1,
-      1,
-      1,
-      1,
-      1,
-      1,
-      1,
-      1,
-      1
-    ]
-}
-
-// this works
-// findFriend(person).then(data => console.log('my friend: ' + data.name))
 
 module.exports = {
     friends,

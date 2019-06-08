@@ -11,14 +11,9 @@ module.exports = (app) => {
     app.post('/api/friends', (req, res) => {
         // create new friend object with user input from the form
         let friend = req.body
-        console.log(friend)
-
-        // res.send('hello')
 
         // convert scores to numbers
         friend.scores = friend.scores.map( item => parseInt(item))
-        console.log('friend after parse: ')
-        console.log(friend)
 
        // add new friend object to json file
        fs.readFile('app/data/friends.json', 'utf8', (err, data) => {
@@ -32,12 +27,9 @@ module.exports = (app) => {
            })
        })
 
-       // find best match
-       // res.send('sending...')
-       let theFriend
+       // find best match and send back to the user
        findFriend(friend).then(data => {
-           theFriend = data
-           res.json(theFriend)
+           res.send(data)
        })
     })
 }
