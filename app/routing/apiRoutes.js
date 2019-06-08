@@ -2,35 +2,25 @@ const fs = require('fs')
 
 module.exports = (app) => {
 
-    const friends = require('../data/friends.js')
+    const { friends, findFriend } = require('../data/friends.js')
 
     app.get('/api/friends', (req, res) => {
         res.json(friends)
-        // console.log(friends)
     })
     
     app.post('/api/friends', (req, res) => {
-       let form = req.body
-       let friend = {
-           name: form.name,
-           photo: form.photo,
-           scores: [
-               parseFloat(form.q1),
-               parseFloat(form.q2),
-               parseFloat(form.q3),
-               parseFloat(form.q4),
-               parseFloat(form.q5),
-               parseFloat(form.q6),
-               parseFloat(form.q7),
-               parseFloat(form.q8),
-               parseFloat(form.q9),
-               parseFloat(form.q10),
-           ]
-       }
+        // create new friend object with user input from the form
+        let friend = req.body
+        console.log(friend)
 
-       friends.push(friend)
+        // res.send('hello')
 
-       // work on saving data to json file for data persistence
+        // convert scores to numbers
+        friend.scores = friend.scores.map( item => parseInt(item))
+        console.log('friend after parse: ')
+        console.log(friend)
+
+       // add new friend object to json file
        fs.readFile('app/data/friends.json', 'utf8', (err, data) => {
            if (err) throw err 
 
@@ -42,5 +32,12 @@ module.exports = (app) => {
            })
        })
 
+       // find best match
+       // res.send('sending...')
+       let theFriend
+       findFriend(friend).then(data => {
+           theFriend = data.name
+           res.send('the friend: ' + theFriend)
+       })
     })
 }

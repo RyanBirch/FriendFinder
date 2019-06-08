@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery.js"></script>
     <link rel="stylesheet" href="/style.css">
     <title>Survey</title>
 </head>
@@ -108,8 +109,36 @@
             <input type="radio" name="q10" value="4"> Disagree<br>
             <input type="radio" name="q10" value="5"> Strongly Disagree<br>
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" id="submit">Submit</button>
     </form>
 
+    <script>
+        $('#submit').on('click', (event) => {
+            event.preventDefault()
+
+            let newFriend = {
+                name: $('input[name="name"]').val().trim(),
+                photo: $('input[name="photo"]').val().trim(),
+                scores: [
+                    $('input[name="q1"]:checked').val().trim(),
+                    $('input[name="q2"]:checked').val().trim(),
+                    $('input[name="q3"]:checked').val().trim(),
+                    $('input[name="q4"]:checked').val().trim(),
+                    $('input[name="q5"]:checked').val().trim(),
+                    $('input[name="q6"]:checked').val().trim(),
+                    $('input[name="q7"]:checked').val().trim(),
+                    $('input[name="q8"]:checked').val().trim(),
+                    $('input[name="q9"]:checked').val().trim(),
+                    $('input[name="q10"]:checked').val().trim()
+                ]
+            }
+
+            $.post('/api/friends', newFriend)
+                .then( data => {
+                    console.log('data: ')
+                    console.log(data)
+                })
+        })
+    </script>
 </body>
 </html>
