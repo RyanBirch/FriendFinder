@@ -135,8 +135,7 @@
 
             $.post('/api/friends', newFriend)
                 .then( data => {
-                    console.log('data: ')
-                    console.log(data)
+                    console.log(`name: ${data.name} \nphoto: ${data.photo} \nscores: ${data.scores}`)
                 })
         })
     </script>

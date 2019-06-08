@@ -36,8 +36,8 @@ module.exports = (app) => {
        // res.send('sending...')
        let theFriend
        findFriend(friend).then(data => {
-           theFriend = data.name
-           res.send('the friend: ' + theFriend)
+           theFriend = data
+           res.json(theFriend)
        })
     })
 }
