@@ -16,7 +16,7 @@
         <h1>This is a survey</h1>
     
         <!-- form -->
-        <form method="POST" action="/api/friends">
+        <form id="friend-form">
             <div class="user-info">
                 Name<br>
                 <input type="text" name="name" required><br>
@@ -113,7 +113,7 @@
                 <input type="radio" name="q10" value="4"> Disagree<br>
                 <input type="radio" name="q10" value="5"> Strongly Disagree<br>
             </div>
-            <button type="submit" id="submit">Submit</button>
+            <button type="submit">Submit</button>
         </form>
     
     
@@ -148,7 +148,7 @@
 
     <!-- javascript -->
     <script>
-        $('#submit').on('click', (event) => {
+        $('#friend-form').on('submit', () => {
             event.preventDefault()
 
             let newFriend = {
