@@ -1,0 +1,21 @@
+.jumbotron {
+    background-color: #ecd138;
+}
+
+body {
+    background-color: #464646;
+    color: #fff;
+}
+
+.user-info {
+    font-size: 1.5em;
+}
+
+.user-info input {
+    margin: 0.5em 0;
+}
+
+.question {
+    margin: 2em;
+    font-size: 1.5em;
+}
