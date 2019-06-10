@@ -15,4 +15,4 @@
 --- 
 
 ## Demo
-See the app here: <a href="!#">Friend Finder</a>
+See the app here: <a href="https://salty-sierra-82494.herokuapp.com">Friend Finder</a>
